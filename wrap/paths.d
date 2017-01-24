@@ -52,7 +52,8 @@ enum LIBRARY
 	GSTREAMER,
 	GSTINTERFACES,
 	VTE,
-	PEAS,
+    PEAS,
+    GOOCANVAS
 }
 
 version (Windows)
@@ -134,5 +135,6 @@ else
 		LIBRARY.GSTINTERFACES: "libgstvideo-1.0.so.0",
 		LIBRARY.VTE:           "libvte-2.91.so.0",
 		LIBRARY.PEAS:          "libpeas-1.0.so.0",
+        LIBRARY.GOOCANVAS:     "libgoocanvas-2.0.so",
 	];
 }

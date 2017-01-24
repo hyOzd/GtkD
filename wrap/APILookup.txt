@@ -73,6 +73,7 @@ lookup: APILookupAtk.txt
 lookup: APILookupGdkPixbuf.txt
 lookup: APILookupGdk.txt
 lookup: APILookupGtk.txt
+lookup: APILookupGooCanvas.txt
 
 srcDir: srcgl
 bindDir: gtkglc

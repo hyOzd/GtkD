@@ -55,12 +55,7 @@ code: start
 code: end
 
 struct: CanvasRect
-code: start
-public this (CanvasItemIF parent, double x, double y, double width, double height)
-{
-    auto p = parent.getCanvasItemStruct();
-    auto item = goo_canvas_rect_new(p, x, y, width, height);
+noVariadic: new
 
-    this (cast(GooCanvasRect*) item);
-} 
-code: end
+struct: CanvasEllipse
+noVariadic: new

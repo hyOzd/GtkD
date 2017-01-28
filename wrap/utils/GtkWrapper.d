@@ -381,6 +381,13 @@ class GtkWrapper
 						throw new WrapError(defReader, "Unknown function: "~ vals[0]);
 					findParam(currentStruct, vals[0], vals[1]).direction = GtkParamDirection.InOut;
 					break;
+				case "noVariadic":
+					if ( defReader.value !in currentStruct.functions )
+						throw new WrapError(defReader, "Unknown function: "~ defReader.value);
+					if ( !currentStruct.functions[defReader.value].isVariadic() )
+						throw new WrapError(defReader, "Function: "~ defReader.value ~ " is not variadic!");
+					currentStruct.functions[defReader.value].removeVariadic();
+					break;
 				case "array":
 					string[] vals = defReader.value.split();
 

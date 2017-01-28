@@ -89,4 +89,46 @@ public class CanvasEllipse : CanvasItemSimple
 	{
 		return goo_canvas_ellipse_get_type();
 	}
+
+	/**
+	 * Creates a new ellipse item.
+	 *
+	 * <!--PARAMETERS-->
+	 *
+	 * Here's an example showing how to create an ellipse centered at (100.0,
+	 * 100.0), with a horizontal radius of 50.0 and a vertical radius of 30.0.
+	 * It is drawn with a red outline with a width of 5.0 and filled with blue:
+	 *
+	 * <informalexample><programlisting>
+	 * GooCanvasItem *ellipse = goo_canvas_ellipse_new (mygroup, 100.0, 100.0, 50.0, 30.0,
+	 * "stroke-color", "red",
+	 * "line-width", 5.0,
+	 * "fill-color", "blue",
+	 * NULL);
+	 * </programlisting></informalexample>
+	 *
+	 * Params:
+	 *     parent = the parent item, or %NULL. If a parent is specified, it will assume
+	 *         ownership of the item, and the item will automatically be freed when it is
+	 *         removed from the parent. Otherwise call g_object_unref() to free it.
+	 *     centerX = the x coordinate of the center of the ellipse.
+	 *     centerY = the y coordinate of the center of the ellipse.
+	 *     radiusX = the horizontal radius of the ellipse.
+	 *     radiusY = the vertical radius of the ellipse.
+	 *
+	 * Return: a new ellipse item.
+	 *
+	 * Throws: ConstructionException GTK+ fails to create the object.
+	 */
+	public this(CanvasItemIF parent, double centerX, double centerY, double radiusX, double radiusY)
+	{
+		auto p = goo_canvas_ellipse_new((parent is null) ? null : parent.getCanvasItemStruct(), centerX, centerY, radiusX, radiusY);
+		
+		if(p is null)
+		{
+			throw new ConstructionException("null returned by new");
+		}
+		
+		this(cast(GooCanvasEllipse*) p, true);
+	}
 }

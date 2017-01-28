@@ -79,20 +79,51 @@ public class CanvasRect : CanvasItemSimple
 		super(cast(GooCanvasItemSimple*)gooCanvasRect, ownedRef);
 	}
 
-	public this (CanvasItemIF parent, double x, double y, double width, double height)
-	{
-		auto p = parent.getCanvasItemStruct();
-		auto item = goo_canvas_rect_new(p, x, y, width, height);
-		
-		this (cast(GooCanvasRect*) item);
-	}
-
-	/**
-	 */
 
 	/** */
 	public static GType getType()
 	{
 		return goo_canvas_rect_get_type();
+	}
+
+	/**
+	 * Creates a new rectangle item.
+	 *
+	 * <!--PARAMETERS-->
+	 *
+	 * Here's an example showing how to create a rectangle at (100,100) with a
+	 * width of 200 and a height of 100.
+	 *
+	 * <informalexample><programlisting>
+	 * GooCanvasItem *rect = goo_canvas_rect_new (mygroup, 100.0, 100.0, 200.0, 100.0,
+	 * "stroke-color", "red",
+	 * "line-width", 5.0,
+	 * "fill-color", "blue",
+	 * NULL);
+	 * </programlisting></informalexample>
+	 *
+	 * Params:
+	 *     parent = the parent item, or %NULL. If a parent is specified, it will assume
+	 *         ownership of the item, and the item will automatically be freed when it is
+	 *         removed from the parent. Otherwise call g_object_unref() to free it.
+	 *     x = the x coordinate of the left of the rectangle.
+	 *     y = the y coordinate of the top of the rectangle.
+	 *     width = the width of the rectangle.
+	 *     height = the height of the rectangle.
+	 *
+	 * Return: a new rectangle item.
+	 *
+	 * Throws: ConstructionException GTK+ fails to create the object.
+	 */
+	public this(CanvasItemIF parent, double x, double y, double width, double height)
+	{
+		auto p = goo_canvas_rect_new((parent is null) ? null : parent.getCanvasItemStruct(), x, y, width, height);
+		
+		if(p is null)
+		{
+			throw new ConstructionException("null returned by new");
+		}
+		
+		this(cast(GooCanvasRect*) p, true);
 	}
 }

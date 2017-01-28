@@ -1588,6 +1588,12 @@ final class GtkFunction
 		buff ~= "wrapper.outer";
 		return buff;
 	}
+
+	public void removeVariadic()
+	{
+		if ( params[$-1].name == "..." )
+			params = params[0..$-1];
+	}
 }
 
 enum GtkParamDirection : string
